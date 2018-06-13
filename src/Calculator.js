@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
+import {onClear, onSubmit, onNumberPress} from './actions'
 
 class Calculator extends Component {
 
@@ -54,11 +56,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => {
-    return {
-        onNumberPress: (num) => dispatch({type: 'ON_PRESS', payload: num}),
-        onClear: () => dispatch({type: 'ON_CLEAR'}),
-        onSubmit: () => dispatch({type: 'ON_SUBMIT'})
-    }
+    return bindActionCreators({onClear, onSubmit, onNumberPress: onNumberPress}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Calculator)
